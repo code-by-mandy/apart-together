@@ -1,23 +1,47 @@
 import './App.css';
 import Form from './Form';
-import Posts from './Posts';
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  const [stories, setStories] = useState([]);
+
+  // useEffect( () => {
+
+  // }, [];
+
+
+
+  const handleClick = () => {
+    console.log(`I've been clicked`);
+    
+    const [form, setForm] = useState([]);
+
+
+
+  }
+
+
   return (
     <div className="App">
       <h1>COVID Confidential</h1>
       <h2>We all have our pandemic stories.  Feel free to share and/or read about others that have been posted</h2>
       <p>* all submitted stories are public</p>
       <div>
-        <Posts />
-      <select>
-        <option>Anxiety</option>
-        <option>Frustration</option>
-        <option>Sadness</option>
-        <option>Madness</option>
-      </select>
-      <button>Tell your Story</button>
-      <Form />
+        <button onClick={handleClick}>Tell your Story</button>
+        <ul>
+          {
+            stories.map((story) => {
+              return(
+                <li>
+                  <h3>I am posting this story becuase I am feeling {emotion}</h3>
+                  <p>{story}</p>
+                </li>
+              )
+          })
+          }
+          </ul>
+        <Form />
       </div>
       
       <footer>
