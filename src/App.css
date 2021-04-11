@@ -1,51 +1,138 @@
 .App {
   text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1200px;
+
   position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-h1 {
-  background-color: #282c34;
-  min-height: 20vh;
+html {
+  font-size: 125%;
+}
+
+/* Header styling */
+
+header,
+footer {
+  background: #767481;
+}
+
+header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #FFF;
+  height: 15rem;
 }
 
-form {
-  position: absolute;
-  width: 60%;
-  height: 60%;
-  background-color: red;
-  margin: 30px auto;
-  top: 0;
+h1 {
+  font-size: 4rem;
+  color: #FBE46F;
 }
+
+button {
+  background: #6F86FB;
+  border: 3px solid #000;
+  border-radius: 10px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  font-size: 1rem;
+  width: 300px;
+  background: #6F86FB;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+/* Form styling */
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+form label,
+form input,
+form p,
+form button {
+  margin: 10px auto;
+}
+
+form input {
+  width: 50%;
+  height: 10rem;
+  font-size: 1rem;
+}
+
+form button {
+  width: 250px;
+}
+
+button,
+option,
+select,
+form button {
+  font-size: 1rem;
+  margin: 1rem;
+
+}
+
+select {
+  width: 200px;
+  text-align: center;
+}
+
+select,
+form button {
+  margin: 20px auto;
+}
+
+
+
+/* Footer Styling */
 
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #282c34;
   height: 10vh;
   vertical-align: center;
   width: 100%;
+  margin-top: 1rem;
 }
 
 footer li {
-  list-style: none;
+  background: none;
+  width: 100%;
+  text-align: center;
   color: white;
 }
 
 footer li,
 footer li a {
-  color: white;
+  color: #FFF;
+  font-size: 1.5rem;
 }
 
 footer li a {

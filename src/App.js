@@ -1,13 +1,53 @@
+
+import './App.css';
+import { useEffect, useState } from 'react';
+import firebase from './firebase';
+import Header from './Header';
+import Form from './Form';
+import Footer from './Footer';
 import Form from './Form';
 import './App.css';
 import { useState, useEffect } from 'react';
 
+
 function App() {
 
 
-  // useEffect( () => {
+  const [showForm, setShowForm] = useState(false);
 
-  // }, [];
+  useEffect( () => {
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (response) => {
+      const newState = [];
+      console.log(response.val());
+
+      const data = response.val();
+
+      for (let story in data) {
+        newState.push(data[story]);
+      }
+      
+      setStories(newState);
+          
+    });
+  }, [] );
+
+  return (
+    <>
+      <Header />
+      
+      <div className="App"> 
+
+        <button onClick={ () => setShowForm(!showForm) }>Tell your Story</button>
+
+        {
+          showForm
+            ? <Form />
+            : null
+        }
+
+        <ul>
 
   const [showForm, setForm] = useState(false);
   const [stories, setStories] = useState([]);
@@ -24,25 +64,24 @@ function App() {
         showForm 
           ? <Form />
           : null
-      }
-      <ul>
+        }
+        <ul>
           {
-            stories.map((story) => {
+            stories.map((story, index) => {
+              console.log(story, index);
               return(
-                <li>
-                  <h3>I am posting this story becuase I am feeling ---</h3>
-                  <p>---</p>
+
+                <li index={index}>
+                  <h3>I am posting this story because I am feeling ____</h3>
+                  <p>Paragraph from the post goes here.  I am trying to figure out how to grab the text from Firebase to populate it!</p>
                 </li>
               )
-          })
+            })
           }
-          </ul>
+        </ul>
       </div>
-      
-      <footer>
-        <li>Created by Mandy Poon and Mark Harrop at <a href="https://junocollege.com">Juno College</a></li>
-        </footer>
-    </div>
+      <Footer />
+    </>
   );
 }
 
