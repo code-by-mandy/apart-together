@@ -1,0 +1,5 @@
+- Have button to display story form on page mount
+- On click, display form with text input (story), emotion category (dropdown), submit 
+- On submit story gets added as an object to array with all post-it’s
+	- Object has properties e.g. story, emotion`1	
+	- Array is displayed on page (new object = new post-it on page)
