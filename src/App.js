@@ -10,7 +10,23 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState([]);
 
-  // useEffect( () => {
+  useEffect( () => {
+    const dbRef = firebase.database().ref();
+
+    dbRef.on('value', (response) => {
+      const newState = [];
+      console.log(response.val());
+
+      const data = response.val();
+
+      for (let story in data) {
+        newState.push(data[story]);
+      }
+
+      setStories(newState);
+
+    });
+  }, [] );
 
   return (
     <div className="App">

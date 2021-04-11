@@ -1,9 +1,6 @@
 .App {
   text-align: center;
-  width: 90%;
   margin: 0 auto;
-  max-width: 1200px;
-
   position: relative;
 }
 
@@ -49,8 +46,9 @@ ul {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   justify-content: space-evenly;
-  width: 100%;
   padding: 0;
 }
 
