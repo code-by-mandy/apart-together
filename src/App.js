@@ -30,7 +30,7 @@ function App() {
 
   return (
     <div className="App">
-    <Header />
+      <Header />
       <div>
         <button onClick={ () => setShowForm( !showForm) }>Tell your Story</button>
 
@@ -39,6 +39,7 @@ function App() {
           ? <Form />
           : null
         }
+     
         <ul>
           {
             stories.map((story, index) => {
