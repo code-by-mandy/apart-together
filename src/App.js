@@ -15,16 +15,11 @@ function App() {
 
     dbRef.on('value', (response) => {
       const newState = [];
-      console.log(response.val());
-
       const data = response.val();
-
       for (let story in data) {
         newState.push(data[story]);
       }
-
       setStories(newState);
-
     });
   }, [] );
 
@@ -43,9 +38,7 @@ function App() {
         <ul>
           {
             stories.map((story) => {
-              console.log(story);
               return(
-
                 <li tabIndex="0">
                   <h3>I am posting this story because I am feeling {story.emotion}</h3>
                   <p>{story.post}</p>
