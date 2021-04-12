@@ -47,7 +47,7 @@ function Form() {
                 <option value="gratitude">Gratitude</option>
                 <option value="inspired">Inspiration</option>
             </select>
-            <button type="submit" onSubmit={submitStory}>Submit your story</button>
+            <button type="submit" onClick={submitStory}>Submit your story</button>
         </form>
     )
 }
