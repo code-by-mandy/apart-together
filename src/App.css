@@ -73,6 +73,11 @@ li {
   padding: 1rem;
 }
 
+li:hover,
+li:focus {
+  background: #FBE46F;
+}
+
 /* Form styling */
 
 form {
@@ -83,18 +88,20 @@ form {
 }
 
 form label,
-form input,
+form textarea,
 form p,
 form button {
   margin: 10px auto;
   font-weight: 700;
 }
 
-form input {
+form textarea {
   width: 50%;
   height: 10rem;
   font-size: 1rem;
+  max-width: 1200px;
   border: 3px solid #000;
+  resize: none;
 }
 
 form button {
@@ -159,5 +166,9 @@ footer li a {
   h2,
   header p {
     padding-left: 0.5rem;
+  }
+
+  form textarea {
+    width: 75%;
   }
 }
