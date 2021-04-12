@@ -3,14 +3,14 @@ import 'firebase/database';
 
 // Your web app's Firebase configuration
 
-var firebaseConfig = {
-  apiKey: "AIzaSyD2VggmQX6aS7891qjL-IsDmhmMrbi3pJw",
-    authDomain: "post-its-103b1.firebaseapp.com",
-    projectId: "post-its-103b1",
-    storageBucket: "post-its-103b1.appspot.com",
-    messagingSenderId: "492789366845",
-    appId: "1:492789366845:web:c4422c3c2a8fa843aa2a54"
-
+const firebaseConfig = {
+  apiKey: "AIzaSyDmA4LNf8gL6Fc3PvTIYRb0iw7W8vDPmoU",
+  authDomain: "mandypmarkh-covid-confidential.firebaseapp.com",
+  databaseURL: "https://mandypmarkh-covid-confidential-default-rtdb.firebaseio.com",
+  projectId: "mandypmarkh-covid-confidential",
+  storageBucket: "mandypmarkh-covid-confidential.appspot.com",
+  messagingSenderId: "282912379020",
+  appId: "1:282912379020:web:a031287e7c28614f132ba9"
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
