@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: #6F86FB;
   margin: 0 auto;
   position: relative;
 }
@@ -21,33 +22,44 @@ footer {
 }
 
 header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
   color: #FFF;
-  height: 15rem;
 }
 
 h1 {
+  padding-top: 2rem;
   font-size: 4rem;
   color: #FBE46F;
 }
 
+h1,
+h2,
+header p {
+  padding: 0 0 1rem 1rem;
+  text-align: left;
+  max-width: 1200px;
+}
+
 button {
-  background: #6F86FB;
+  background: #FBE46F;
   border: 3px solid #000;
   border-radius: 10px;
   width: 200px;
-  margin: 0 auto;
+  text-transform: uppercase;
+}
+
+button:hover,
+button:focus {
+  background: #767481;
+  color: #FFF;
 }
 
 ul {
   display: flex;
   flex-wrap: wrap;
+  background: #6F86FB;
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
+  max-width: 1200px;
   justify-content: space-evenly;
   padding: 0;
 }
@@ -56,9 +68,14 @@ li {
   list-style: none;
   font-size: 1rem;
   width: 300px;
-  background: #6F86FB;
+  background: #FFF;
   margin: 1rem;
   padding: 1rem;
+}
+
+li:hover,
+li:focus {
+  background: #FBE46F;
 }
 
 /* Form styling */
@@ -71,16 +88,20 @@ form {
 }
 
 form label,
-form input,
+form textarea,
 form p,
 form button {
   margin: 10px auto;
+  font-weight: 700;
 }
 
-form input {
+form textarea {
   width: 50%;
   height: 10rem;
   font-size: 1rem;
+  max-width: 1200px;
+  border: 3px solid #000;
+  resize: none;
 }
 
 form button {
@@ -93,7 +114,6 @@ select,
 form button {
   font-size: 1rem;
   margin: 1rem;
-
 }
 
 select {
@@ -106,16 +126,12 @@ form button {
   margin: 20px auto;
 }
 
-
-
 /* Footer Styling */
 
 footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 10vh;
-  vertical-align: center;
   width: 100%;
   margin-top: 1rem;
 }
@@ -135,4 +151,24 @@ footer li a {
 
 footer li a {
   text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 3rem;
+  }
+   
+  h2 {
+    font-size: 1rem;
+  }
+
+  h1,
+  h2,
+  header p {
+    padding-left: 0.5rem;
+  }
+
+  form textarea {
+    width: 75%;
+  }
 }

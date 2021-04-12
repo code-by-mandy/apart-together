@@ -28,23 +28,26 @@ function Form() {
 
 
     return(
-        <form action="submit">
+        <form action="submit" >
             <label htmlFor="story">Share your story: (optional) - sign off with your name if you'd like!</label>
-            <input 
+            <textarea 
                 type="text" 
                 id="story"
+                placeholder="Please tell your story here"
                 onChange={storyInput}
-            />
+                required
+            >
+            </textarea>
             <label>Would you like to tag this story with an emotion? If yes, please pick one:</label>
             <select onChange={tagEmotion}>
-                <option value="anxiety">Anxiety</option>
-                <option value="frustration">Frustration</option>
-                <option value="sadness">Sadness</option>
-                <option value="madness">Madness</option>
+                <option value="anxious">Anxiety</option>
+                <option value="frustrated">Frustration</option>
+                <option value="sad">Sadness</option>
+                <option value="mad">Madness</option>
                 <option value="gratitude">Gratitude</option>
-                <option value="inspiration">Inspiration</option>
+                <option value="inspired">Inspiration</option>
             </select>
-            <button type="submit" onClick={submitStory}>Submit your story</button>
+            <button type="submit" onSubmit={submitStory}>Submit your story</button>
         </form>
     )
 }
