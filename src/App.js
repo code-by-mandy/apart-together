@@ -9,22 +9,18 @@ import { useState, useEffect } from 'react';
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState([]);
-
+  
+  //when there is a change in firebase, push to newState array, which is then set as new Stories state
   useEffect( () => {
     const dbRef = firebase.database().ref();
 
     dbRef.on('value', (response) => {
       const newState = [];
-      console.log(response.val());
-
       const data = response.val();
-
       for (let story in data) {
         newState.push(data[story]);
       }
-
       setStories(newState);
-
     });
   }, [] );
 
@@ -32,20 +28,20 @@ function App() {
     <div className="App">
       <Header />
       <div>
-        <button onClick={ () => setShowForm( !showForm) }>Tell your Story</button>
-
+        <button onClick={ () => setShowForm(!showForm) }>Tell Your Story
+        </button>
+        {/*on click render Form component */}
         {
         showForm 
-          ? <Form />
+          ? <Form closeForm={() => setShowForm(false)}/>
           : null
         }
-     
+        
+        {/*map stories array from firebase and return each story as a list item on page*/}
         <ul>
           {
             stories.map((story) => {
-              console.log(story);
               return(
-
                 <li tabIndex="0">
                   <h3>I am posting this story because I am feeling {story.emotion}</h3>
                   <p>{story.post}</p>
