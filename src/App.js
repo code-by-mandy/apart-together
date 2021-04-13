@@ -9,7 +9,8 @@ import { useState, useEffect } from 'react';
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState([]);
-
+  
+  //when there is a change in firebase, push to newState array, which is then set as new Stories state
   useEffect( () => {
     const dbRef = firebase.database().ref();
 
@@ -27,14 +28,16 @@ function App() {
     <div className="App">
       <Header />
       <div>
-        <button onClick={ () => setShowForm( !showForm) }>Tell your Story</button>
-
+        <button onClick={ () => setShowForm(!showForm) }>Tell Your Story
+        </button>
+        {/*on click render Form component */}
         {
         showForm 
-          ? <Form />
+          ? <Form closeForm={() => setShowForm(false)}/>
           : null
         }
-     
+        
+        {/*map stories array from firebase and return each story as a list item on page*/}
         <ul>
           {
             stories.map((story) => {
