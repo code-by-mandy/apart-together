@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [stories, setStories] = useState([]);
-  
+
   //when there is a change in firebase, push to newState array, which is then set as new Stories state
   useEffect( () => {
     const dbRef = firebase.database().ref();
@@ -42,7 +42,7 @@ function App() {
           {
             stories.map((story) => {
               return(
-                <li tabIndex="0">
+                <li tabIndex="0" key={story.date}>
                   <h3>I am posting this story because I am feeling {story.emotion}</h3>
                   <p>{story.post}</p>
                 </li>
@@ -52,7 +52,7 @@ function App() {
         </ul>
       </div>
       <Footer />
-      </div>
+    </div>
   );
 }
 
