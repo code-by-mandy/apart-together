@@ -20,6 +20,7 @@ function App() {
       for (let story in data) {
         newState.push(data[story]);
       }
+      newState.reverse();
       setStories(newState);
     });
   }, [] );
