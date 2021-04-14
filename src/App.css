@@ -83,6 +83,10 @@ li:focus {
   background: #FBE46F;
 }
 
+li p {
+  padding-top: 10px;
+}
+
 /* Form styling */
 
 form {
