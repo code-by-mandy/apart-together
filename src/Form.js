@@ -13,7 +13,8 @@ function Form({closeForm}) {
     // create individual story object with emotion and post keys, their values set by storyEmotion and userTale state values from event listeners
     const oneStory = {
         emotion: storyEmotion,
-        post: userTale
+        post: userTale,
+        date: firebase.database.ServerValue.TIMESTAMP
     };
     
     //submitStory function - pushes oneStory object to firebase, clears form, sets 'submitted' state to true to trigger useEffect
