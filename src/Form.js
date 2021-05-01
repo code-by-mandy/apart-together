@@ -38,12 +38,12 @@ function Form({closeForm}) {
     return(
         <form action="submit" onSubmit={submitStory}>
             {/* {input for user story} set userTale state value with onChange}*/}
-            <label htmlFor="story" name="story">Share your story - sign off with your name if you'd like!</label>
+            <label htmlFor="story" name="story">Share your story:</label>
             <textarea 
                 type="text" 
                 id="story"
                 name="story"
-                placeholder="Please tell your story here"
+                placeholder="Your pandemic experience here"
                 onChange={ (e) => setUserTale(e.target.value)}
                 required></textarea>
             {/* {input for select emotion, set storyEmotion state value with onChange} */}
@@ -61,7 +61,7 @@ function Form({closeForm}) {
                 <option value="mad">Madness</option>
                 <option value="grateful">Gratitude</option>
                 <option value="inspired">Inspiration</option>
-                <option value="...not sure">Not sure</option>
+                <option value="...other">Other</option>
             </select>
             <button type="submit">Submit your story</button>
         </form>

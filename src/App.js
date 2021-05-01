@@ -1,6 +1,7 @@
 import firebase from './firebase';
 import Header from './Header';
 import Form from './Form';
+import Story from './Story';
 import Footer from './Footer';
 import './App.css';
 import { useState, useEffect } from 'react';
@@ -43,10 +44,7 @@ function App() {
           {
             stories.map((story) => {
               return(
-                <li tabIndex="0" key={story.date}>
-                  <h3>I am posting this story because I am feeling {story.emotion}</h3>
-                  <p>{story.post}</p>
-                </li>
+                <Story story={story}/>
               )
             })
           }
