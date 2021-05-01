@@ -43,11 +43,12 @@ function Form({closeForm}) {
                 type="text" 
                 id="story"
                 name="story"
-                placeholder="Your pandemic experience here"
+                placeholder="Your pandemic experience goes here"
+                maxLength="200"
                 onChange={ (e) => setUserTale(e.target.value)}
                 required></textarea>
             {/* {input for select emotion, set storyEmotion state value with onChange} */}
-            <label htmlFor="emotion" name="emotion">Choose an emotion that goes with your story:</label>
+            <label htmlFor="emotion" name="emotion">Which emotions go with your story?</label>
             <select 
                 id="emotion" 
                 name="emotion" 
