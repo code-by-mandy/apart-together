@@ -1,3 +1,5 @@
+/*jsx for each story post*/
+
 const Story = ({story}) => {
     return (
         <>

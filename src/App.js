@@ -44,13 +44,15 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <div>
+  
+      <div className="ctaBox">
         <Filter getStories = {getStories}/>
+
+         {/*on click render Form component */}
+        <button onClick={ () => setShowForm(!showForm) }>Tell Your Story</button>
       </div>
       <div>
-        <button onClick={ () => setShowForm(!showForm) }>Tell Your Story
-        </button>
-        {/*on click render Form component */}
+  
         {
         showForm 
           ? <Form closeForm={() => setShowForm(false)}/>

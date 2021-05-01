@@ -1,6 +1,8 @@
 import {useState} from 'react';
 
 const Filter = ({getStories}) => {
+    
+    /*state to store chosen emotion at filter*/
     const [emotionFilter, setEmotionFilter] = useState("");
 
     return(

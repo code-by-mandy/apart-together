@@ -135,6 +135,11 @@ form button {
   margin: 20px auto;
 }
 
+.ctaBox {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* Footer Styling */
 
 footer {
