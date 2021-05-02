@@ -87,6 +87,11 @@ li p {
   padding-top: 10px;
 }
 
+.ctaBox {
+  display: flex;
+  justify-content: space-around;
+}
+
 /* Form styling */
 
 form {
@@ -135,9 +140,12 @@ form button {
   margin: 20px auto;
 }
 
-.ctaBox {
-  display: flex;
-  justify-content: space-around;
+.customBox {
+  display:none;
+}
+
+.customBox.show {
+  display: block;
 }
 
 /* Footer Styling */

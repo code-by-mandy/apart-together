@@ -6,21 +6,29 @@ function Form({closeForm}) {
     //states that store user input per form
     const [userTale, setUserTale] = useState("");
     const [emotionString, setEmotionString] = useState("");
+    const [customEmotion, setCustomEmotion] = useState("");
 
-    //turn HTML collection of selected options to string for Firebase
+
+    const showCustomBox = () => {
+        const customBox = document.querySelector('.customBox');
+        customBox.classList.add("show");
+    }
+
+    //turn HTML collection of selected options to string for firebase
     const emotionTags = (e) => {
         const emotionsCollection = e.target.selectedOptions;
-
+                
         //turn collection to array first to get value of each option
         let emotionsArray = []
         Array.from(emotionsCollection).forEach ( emotion => {
-            emotionsArray.push(emotion.value);
+                emotionsArray.push(emotion.value); 
         })
 
         //turn array into string and set emotionString state
-        const emotionString = Array.from(emotionsArray).join(' ');
-        setEmotionString(emotionString);
+        const emotionString = Array.from(emotionsArray).join(' ');      
+        setEmotionString(emotionString);    
     }
+
 
     //state that stores boolean value of whether form has been submitted or not - for closeForm prop method
     const [submitted, setSubmitted] = useState(false);
@@ -28,6 +36,7 @@ function Form({closeForm}) {
     // create individual story object with emotion and post keys, their values set by storyEmotion and userTale state values from event listeners
     const oneStory = {
         emotion: emotionString,
+        custom: customEmotion,
         post: userTale,
         date: firebase.database.ServerValue.TIMESTAMP
     };
@@ -63,29 +72,31 @@ function Form({closeForm}) {
                 onChange={ (e) => setUserTale(e.target.value)}
                 required></textarea>
             {/* {input for select emotion, set storyEmotion state value with onChange} */}
-            <label htmlFor="emotion" name="emotion">Which emotions go with your story?</label>
+            <label htmlFor="emotion" name="emotion">Which emotion(s) go with your story?</label>
             <select 
                 id="emotion" 
                 name="emotion" 
-                onChange={emotionTags}  
+                onChange={emotionTags}
                 required
                 multiple
                 size="6"
                 >
-                <option value="" disabled>Pick one:</option>
+                <option value="" disabled>Pick your emotion(s):</option>
                 <option value="anxious">Anxiety</option>
                 <option value="frustrated">Frustration</option>
                 <option value="sad">Sadness</option>
                 <option value="grateful">Gratitude</option>
                 <option value="inspired">Inspiration</option>
-                <option value="custom">Other</option>
+                <option value="nuanced" className="custom" onClick={showCustomBox}>Other</option>
             </select>
-            {/* <label htmlFor="custom" name="custom">How do you feel?</label> */}
-            {/* <textarea type="text" id="custom" name="custom" maxLength="20" value={storyEmotion}></textarea> */}
+            <div className="customBox">
+                <label htmlFor="custom" name="custom">How do you feel?</label>
+                <textarea type="text" id="custom" name="custom" maxLength="20" onChange={(e) => {setCustomEmotion(e.target.value)}}></textarea>
+            </div>
             <button type="submit">Submit your story</button>
         </form>
     )
-}
+    }
 
 export default Form;
 
