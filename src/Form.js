@@ -2,7 +2,7 @@ import {useState, useEffect } from 'react';
 import firebase from './firebase';
 
 
-function Form({closeForm, refreshPage}) {
+function Form({closeForm}) {
     //states that store user input per form
     const [userTale, setUserTale] = useState("");
     const [emotionString, setEmotionString] = useState("");
@@ -54,7 +54,6 @@ function Form({closeForm, refreshPage}) {
     //if form has been submitted, closeForm() -- unmount component
     useEffect( () => {
         if (submitted) {
-            refreshPage();
             closeForm();
         }
       })
