@@ -66,7 +66,7 @@ function App() {
           {
             filteredStories.map((story) => {
               return(
-                <Story story={story}/>
+                <Story story={story} key={story.date}/>
               )
             })
           }

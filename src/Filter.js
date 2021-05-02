@@ -16,16 +16,14 @@ const Filter = ({getStories}) => {
                 id="emotionFilter" 
                 onChange={(e) => setEmotionFilter(e.target.value)}  
                 required>
-                <option value="" disabled>Pick one:</option>
                 <option value="anxious">Anxiety</option>
                 <option value="frustrated">Frustration</option>
                 <option value="sad">Sadness</option>
-                <option value="mad">Madness</option>
                 <option value="grateful">Gratitude</option>
                 <option value="inspired">Inspiration</option>
-                <option value="...other">Other</option>
+                <option value="nuanced">Other</option>
             </select>
-            <button type="submit">Submit</button>
+            <button type="submit">Filter</button>
         </form>
     )
 }

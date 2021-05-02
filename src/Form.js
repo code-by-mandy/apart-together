@@ -25,7 +25,7 @@ function Form({closeForm}) {
         })
 
         //turn array into string and set emotionString state
-        const emotionString = Array.from(emotionsArray).join(' ');      
+        const emotionString = Array.from(emotionsArray).join(' and ');      
         setEmotionString(emotionString);    
     }
 
