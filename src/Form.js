@@ -2,7 +2,7 @@ import {useState, useEffect } from 'react';
 import firebase from './firebase';
 
 
-function Form({closeForm}) {
+function Form({closeForm, refreshPage}) {
     //states that store user input per form
     const [userTale, setUserTale] = useState("");
     const [emotionString, setEmotionString] = useState("");
@@ -54,13 +54,15 @@ function Form({closeForm}) {
     //if form has been submitted, closeForm() -- unmount component
     useEffect( () => {
         if (submitted) {
-          closeForm();
+            refreshPage();
+            closeForm();
         }
       })
 
 
     return(
         <form action="submit" onSubmit={submitStory}>
+
             {/* {input for user story} set userTale state value with onChange}*/}
             <label htmlFor="story" name="story">Share your story:</label>
             <textarea 
@@ -71,6 +73,7 @@ function Form({closeForm}) {
                 maxLength="200"
                 onChange={ (e) => setUserTale(e.target.value)}
                 required></textarea>
+
             {/* {input for select emotion, set storyEmotion state value with onChange} */}
             <label htmlFor="emotion" name="emotion">Which emotion(s) go with your story?</label>
             <select 
@@ -89,18 +92,16 @@ function Form({closeForm}) {
                 <option value="inspired">Inspiration</option>
                 <option value="nuanced" className="custom" onClick={showCustomBox}>Other</option>
             </select>
+
+            {/* {input for customized emotion should they click on "other, set customEmotion state value with onChange"} */}
             <div className="customBox">
                 <label htmlFor="custom" name="custom">How do you feel?</label>
                 <textarea type="text" id="custom" name="custom" maxLength="20" onChange={(e) => {setCustomEmotion(e.target.value)}}></textarea>
             </div>
+            
             <button type="submit">Submit your story</button>
         </form>
     )
     }
 
 export default Form;
-
-//other text - custom input --
-//dynamically change "Other" value
-//if "Other" is chosen, show form to fill new adjective
-//take value from this form, use as new "Other" value
