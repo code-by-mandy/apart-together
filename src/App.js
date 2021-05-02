@@ -32,13 +32,15 @@ function App() {
     e.preventDefault();
     const copyOfAllStories = [...allStories];
     const filteredStories = copyOfAllStories.filter(
-      (story) => {
-        return story.emotion === emotion;
+      (story) => {        
+        const emotionsArray = story.emotion.split(' ');        
+        return emotionsArray.includes(emotion);;
       });
 
     setFilteredStories(filteredStories);
   }
 
+  //all stories option
   
 
   return (

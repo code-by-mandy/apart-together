@@ -5,14 +5,28 @@ import firebase from './firebase';
 function Form({closeForm}) {
     //states that store user input per form
     const [userTale, setUserTale] = useState("");
-    const [storyEmotion, setStoryEmotion] = useState("");
+    const [emotionString, setEmotionString] = useState("");
+
+    const emotionTags = (e) => {
+        const emotionsCollection = e.target.selectedOptions;
+        let emotionsArray = []
+
+        Array.from(emotionsCollection).forEach ( emotion => {
+            emotionsArray.push(emotion.value);
+        })
+
+        const emotionString = Array.from(emotionsArray).join(' ');
+
+        setEmotionString(emotionString);
+
+    }
 
     //state that stores boolean value of whether form has been submitted or not - for closeForm prop method
     const [submitted, setSubmitted] = useState(false);
 
     // create individual story object with emotion and post keys, their values set by storyEmotion and userTale state values from event listeners
     const oneStory = {
-        emotion: storyEmotion,
+        emotion: emotionString,
         post: userTale,
         date: firebase.database.ServerValue.TIMESTAMP
     };
@@ -23,7 +37,7 @@ function Form({closeForm}) {
         const dbRef = firebase.database().ref();
         dbRef.push(oneStory);
         setUserTale("");
-        setStoryEmotion("");
+        setEmotionString("");
         setSubmitted(true);
     }
 
@@ -52,21 +66,28 @@ function Form({closeForm}) {
             <select 
                 id="emotion" 
                 name="emotion" 
-                onChange={(e) => setStoryEmotion(e.target.value)}  
-                value={storyEmotion} 
-                required>
+                onChange={emotionTags}  
+                required
+                multiple
+                size="6"
+                >
                 <option value="" disabled>Pick one:</option>
                 <option value="anxious">Anxiety</option>
                 <option value="frustrated">Frustration</option>
                 <option value="sad">Sadness</option>
-                <option value="mad">Madness</option>
                 <option value="grateful">Gratitude</option>
                 <option value="inspired">Inspiration</option>
-                <option value="...other">Other</option>
+                <option value="custom">Other</option>
             </select>
+            <label htmlFor="custom" name="custom">How do you feel?</label>
+            {/* <textarea type="text" id="custom" name="custom" maxLength="20" value={storyEmotion}></textarea> */}
             <button type="submit">Submit your story</button>
         </form>
     )
 }
 
 export default Form;
+
+//add other option to form
+//add text input field for other
+//if other, 
