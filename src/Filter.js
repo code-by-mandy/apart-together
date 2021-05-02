@@ -5,6 +5,10 @@ const Filter = ({getStories}) => {
     /*state to store chosen emotion at filter*/
     const [emotionFilter, setEmotionFilter] = useState("");
 
+    /*show all stories by default*/
+
+    /*can't select first option*/
+
     return(
         <form name="emotionFilter" onSubmit={ (e) => getStories (e, emotionFilter)}>
             <label htmlFor="emotionFilter">Filter stories by emotion:</label>

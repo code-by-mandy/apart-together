@@ -40,7 +40,7 @@ function App() {
     setFilteredStories(filteredStories);
   }
 
-  //all stories option
+  //show new story when submitted even if under filter
   
 
   return (

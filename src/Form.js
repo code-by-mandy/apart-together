@@ -7,18 +7,19 @@ function Form({closeForm}) {
     const [userTale, setUserTale] = useState("");
     const [emotionString, setEmotionString] = useState("");
 
+    //turn HTML collection of selected options to string for Firebase
     const emotionTags = (e) => {
         const emotionsCollection = e.target.selectedOptions;
-        let emotionsArray = []
 
+        //turn collection to array first to get value of each option
+        let emotionsArray = []
         Array.from(emotionsCollection).forEach ( emotion => {
             emotionsArray.push(emotion.value);
         })
 
+        //turn array into string and set emotionString state
         const emotionString = Array.from(emotionsArray).join(' ');
-
         setEmotionString(emotionString);
-
     }
 
     //state that stores boolean value of whether form has been submitted or not - for closeForm prop method
@@ -79,7 +80,7 @@ function Form({closeForm}) {
                 <option value="inspired">Inspiration</option>
                 <option value="custom">Other</option>
             </select>
-            <label htmlFor="custom" name="custom">How do you feel?</label>
+            {/* <label htmlFor="custom" name="custom">How do you feel?</label> */}
             {/* <textarea type="text" id="custom" name="custom" maxLength="20" value={storyEmotion}></textarea> */}
             <button type="submit">Submit your story</button>
         </form>
@@ -88,6 +89,7 @@ function Form({closeForm}) {
 
 export default Form;
 
-//add other option to form
-//add text input field for other
-//if other, 
+//other text - custom input --
+//dynamically change "Other" value
+//if "Other" is chosen, show form to fill new adjective
+//take value from this form, use as new "Other" value
