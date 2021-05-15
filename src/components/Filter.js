@@ -1,20 +1,20 @@
 import {useState} from 'react';
 
-const Filter = ({getStories, checkFiltered}) => {
+const Filter = ({submission}) => {
     
     /*state to store chosen emotion at filter*/
-    const [emotionFilter, setEmotionFilter] = useState("");
+    const [emotionString, setEmotionString] = useState("");
 
-    const mapStories = () => {
-        checkFiltered();
+    const handleSubmit = (e) => {
+        submission(e, emotionString);
     }
 
     return(
-        <form name="emotionFilter" onSubmit={(e) => getStories(e, emotionFilter)}>
+        <form name="emotionFilter" onSubmit={handleSubmit}>
             <label htmlFor="emotionFilter">Filter stories by emotion:</label>
             <select 
                 id="emotionFilter" 
-                onChange={(e) => setEmotionFilter(e.target.value)}  
+                onChange={(e) => setEmotionString(e.target.value)}  
                 required>
                 <option value="all" defaultValue>All</option>
                 <option value="anxious">Anxiety</option>
@@ -24,7 +24,7 @@ const Filter = ({getStories, checkFiltered}) => {
                 <option value="inspired">Inspiration</option>
                 <option value="nuanced">Other</option>
             </select>
-            <button type="submit" onClick={mapStories}>Filter</button>
+            <button type="submit">Filter</button>
         </form>
     )
 }

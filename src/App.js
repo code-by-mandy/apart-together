@@ -1,98 +1,95 @@
 import { useState, useEffect } from 'react';
-import firebase from './firebase';
-import './App.css';
-import Header from './Header';
-import Filter from './Filter';
-import Form from './Form';
-import Story from './Story';
-import Footer from './Footer';
+import firebase from './components/firebase';
+import Form from './components/Form';
+import Filter from './components/Filter';
+import Story from './components/Story';
 
 
 function App() {
-  const [filtered, setFiltered] = useState(false);
-  const [showForm, setShowForm] = useState(false);
 
+  //change tab title
+  useEffect (() => {
+    document.title="Apart Together";
+    getStories("all");
+  }, [])  
 
-  //when there is a change in firebase, push to newState array, which is then set as new Stories state
+  //state for storing stories from firebase and whether a new story has been submitted
   const [allStories, setAllStories] = useState([]);
-
-  useEffect( () => {
+  const [emotionFilter, setEmotionFilter] = useState("all");
+  
+  // pull stories from firebase
+  const getStories = (emotionString) => {
     const dbRef = firebase.database().ref();
 
-    dbRef.on('value', (response) => {
-      const newState = [];
-      const data = response.val();
+    dbRef.on('value', (res) => {
+      const rawStories = [];
+      const data = res.val();
       for (let story in data) {
-        newState.push(data[story]);
+        rawStories.push(data[story]);
       }
-      newState.reverse();
-      setAllStories(newState);
-    });
-  }, [] );
 
-  //filter stories per user choice - set filteredStories state with new filtered array
-  const [filteredStories, setFilteredStories] = useState([]);
+    rawStories.reverse();
 
-  const getStories = (e, emotion) => {
+    let filteredStories = [];
+    let filterString = new RegExp(emotionString);
+
+    if (emotionString !== "all") {
+      filteredStories = rawStories.filter(
+        filteredStory => filterString.test(filteredStory.emotion)
+      );
+    } else {
+      filteredStories = rawStories;
+    } 
+
+    setAllStories(filteredStories);
+  });
+}
+  //if new story submitted, set newStory state to true to trigger getMovies function
+  const filterSubmission = (e, emotionString) => {
     e.preventDefault();
-    const copyOfAllStories = [...allStories];
-    const filteredStories = copyOfAllStories.filter(
-      (story) => {     
-
-        /* split emotion string values from allStories array into an emotionsArray array */
-        const emotionsArray = story.emotion.split(' ');
-        
-        /* return array per chosen emotion, if "all" return all stories array*/
-        if (emotion === "all") {
-          return copyOfAllStories;
-        } else {
-          return emotionsArray.includes(emotion);
-        }        
-      });
-
-    setFilteredStories(filteredStories);
+    setEmotionFilter(emotionString);
+    getStories(emotionString);
   }
 
-  
-  return (
-    <div className="App">
-      <Header />
-  
-      <div className="ctaBox">
-        <Filter getStories = {getStories} checkFiltered = { () => setFiltered(true)}/>
+  const formSubmission = (e) => {
+    e.preventDefault();
+    getStories(emotionFilter)
+  }
 
-         {/*on click render Form component */}
-        <button onClick={ () => setShowForm(!showForm) }>Tell Your Story</button>
-      </div>
-      <div>
-  
-        {
-        showForm 
-          ? <Form closeForm={() => setShowForm(false)}/>
-          : null
-        }
-        
-        {/*map stories array from firebase and return each story as a list item on page*/}
-        <ul>
-          {
-            filtered 
-            ? filteredStories.map((story) => {
-              return(
-                <Story story={story} key={story.date}/>
-              )
-            })
-            : allStories.map((story) => {
-              return(
-                <Story story={story} key={story.date}/>
-              )
-            })
-          }
-          
-        </ul>
-      </div>
-      <Footer />
+  return (
+    <div>
+      <header>
+        <h1>Apart Together</h1>
+        <p>We're all experiencing the pandemic but sometimes social distancing makes it hard to feel like we're not alone. Read about other people's experiences here or share your own!</p>
+      </header>
+      <main>
+        <div className="mainIntro">
+          <h2>Stories</h2>
+          <div className="ctaWrapper">
+            <div className="filter icon">
+                <Filter submission={filterSubmission} />
+            </div>
+            <div className="share icon">
+                <Form submission={formSubmission}/>
+            </div>
+          </div>        
+        </div>
+        <div className="mainBody">
+          <ul>
+            {
+              allStories.map(story => {
+                return <Story story={story} key={story.date}/>
+              })
+            }
+            
+          </ul>
+        </div>
+      </main>
+      <footer>
+        <p>By Mandy Poon and Mark Harrop at Juno College</p>
+      </footer>
     </div>
   );
 }
 
-export default App;
+export default App
