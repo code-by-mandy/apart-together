@@ -7,10 +7,9 @@ function Form({submission}) {
     const [userTale, setUserTale] = useState("");
     const [emotionString, setEmotionString] = useState("");
     const [customEmotion, setCustomEmotion] = useState("");
-
+    const customBox = document.querySelector('.customBox');
 
     const showCustomBox = () => {
-        const customBox = document.querySelector('.customBox');
         customBox.classList.add("show");
     }
 
@@ -48,6 +47,9 @@ function Form({submission}) {
         
         const clearInputElements = document.querySelectorAll('#story, #emotion, #custom');        
         clearInputElements.forEach(elem => elem.value = "");     
+
+        customBox.classList.remove("show");
+        setCustomEmotion("");
     }
 
     return(
@@ -60,7 +62,7 @@ function Form({submission}) {
                 id="story"
                 name="story"
                 placeholder="Your pandemic experience goes here"
-                maxLength="200"
+                maxLength="300"
                 onChange={ (e) => setUserTale(e.target.value)}
                 required>
             </textarea>
@@ -78,15 +80,16 @@ function Form({submission}) {
                 <option value="" disabled>Pick your emotion(s):</option>
                 <option value="anxious">Anxiety</option>
                 <option value="frustrated">Frustration</option>
-                <option value="sad">Sadness</option>
                 <option value="grateful">Gratitude</option>
                 <option value="inspired">Inspiration</option>
+                <option value="nostalgic">Nostalgia</option>
+                <option value="sad">Sadness</option>
                 <option value="nuanced" className="custom" onClick={showCustomBox}>Other</option>
             </select>
 
             {/* {input for customized emotion should they click on "other, set customEmotion state value with onChange"} */}
             <div className="customBox">
-                <label htmlFor="custom" name="custom">How do you feel?</label>
+                <label htmlFor="custom" name="custom">I feel...</label>
                 <textarea type="text" id="custom" name="custom" maxLength="20" onChange={(e) => {setCustomEmotion(e.target.value)}}></textarea>
             </div>
             
